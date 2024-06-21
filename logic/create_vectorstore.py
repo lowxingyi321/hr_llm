@@ -1,4 +1,3 @@
-from helper_functions import llm
 import pandas as pd
 from datasets import Dataset
 from langchain.prompts import PromptTemplate
@@ -11,14 +10,25 @@ from langchain_community.vectorstores import Chroma
 from langchain_openai import OpenAIEmbeddings
 from langchain.chains import RetrievalQA
 from langchain_openai import ChatOpenAI
+import tiktoken
+
+
+def count_tokens(text):
+    encoding = tiktoken.encoding_for_model(model_default)
+    return len(encoding.encode(text))
 
 # Constants
 model_default = "gpt-4o"
+persist_directory = "../chroma_db"
 
 # Load
 file_paths = ["./data/DRAFT 1_Maternity Leave Information.docx",
-              "./data/local transport policy FAQ.pdf"]
-categories = ['maternity', 'local_transport']
+            #   "./data/local transport policy FAQ.pdf"
+              ]
+
+categories = ['mat', 
+            #   'tra'
+              ]
 documents = []
 
 #cleanup
@@ -44,13 +54,18 @@ for file, category in zip(file_paths, categories):
         separators=["\n\n", "\n", " ", ""],
         chunk_size=500,
         chunk_overlap=50,
-        length_function=llm.count_tokens
+        length_function=count_tokens
     )
 
     splitted_documents = text_splitter.split_documents(doc)
 
     # Convert to embedding and storage
     embeddings_model = OpenAIEmbeddings(model='text-embedding-3-small')
-    vectorstore = Chroma.from_documents(splitted_documents, embeddings_model,
-                                        persist_directory=f"./chroma_db",
-                                        collection_name=f"{category}")
+    vectorstore = Chroma.from_documents(splitted_documents, 
+                                        embeddings_model,
+                                        persist_directory=persist_directory,
+                                        # collection_name=category
+                                        )
+    print(category)
+
+print('complete')
