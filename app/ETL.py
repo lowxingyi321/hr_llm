@@ -7,7 +7,7 @@ from langchain_community.vectorstores import Chroma
 from langchain_openai import OpenAIEmbeddings
 import tiktoken
 import os
-import config
+import utils.config as config
 
 model_default = config.MODEL_DEFAULT
 persist_directory = config.PERSIST_DIRECTORY
