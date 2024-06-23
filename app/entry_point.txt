@@ -26,3 +26,6 @@ Current Working Directory: /app/utils
 
 Is there a way to structure the project so that the module rag_lmm can be properly run
 no matter what the entry point is?
+
+https://discuss.streamlit.io/t/question-about-project-structure/28867/2
+Check out example docker as well
