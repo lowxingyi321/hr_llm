@@ -1,5 +1,5 @@
 import streamlit as st
-from utils.archive import rag_llm
+from utils import rag_llm
 
 # region <--------- Streamlit App Configuration --------->
 st.set_page_config(

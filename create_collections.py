@@ -24,6 +24,9 @@ collection_names = [
     "local_transport",
     "overseas_travel"
 ]
+
+full_collection_name = "all_policies"
+
 if not os.path.isdir(PERSIST_DIRECTORY):
 
     for file_name, file_path in zip(file_names, file_paths):
@@ -36,6 +39,11 @@ if not os.path.isdir(PERSIST_DIRECTORY):
         splitted_documents = recursive_split(document)
         collection = create_vectorstore(splitted_documents, collection_name)
         print(f'{collection_name} vectorstore created')
+    
+    for document in documents:
+
+        full_collection = create_vectorstore(splitted_documents, full_collection_name)
+        print(f'{full_collection_name} vectorstore created')
 
 print('ETL completed')
 

@@ -1,17 +1,17 @@
+from. import MODEL_DEFAULT, PERSIST_DIRECTORY, EMBEDDINGS_MODEL
 from langchain.chains import RetrievalQA
 from langchain_openai import ChatOpenAI
 from langchain.prompts import PromptTemplate
 from langchain_openai import OpenAIEmbeddings
 from langchain_community.vectorstores import Chroma
 
+all_policies_collection = Chroma(persist_directory=PERSIST_DIRECTORY,
+                                embedding_function=EMBEDDINGS_MODEL,
+                                collection_name="all_policies"
+                                )
 
-
-def similarity_search(query):
-    
-    retriever = loaded_vectorstore.as_retriever()
-    response = retriever.invoke(query)
-
-    return response
+retriever = all_policies_collection.as_retriever(search_type="mmr", 
+                                                search_kwargs={"k": 2, "fetch_k":3})
 
 def respond(query):
 
@@ -25,7 +25,7 @@ def respond(query):
 
     # Retrieval
     qa_chain = RetrievalQA.from_chain_type(
-        ChatOpenAI(model=model_default),
+        ChatOpenAI(model=MODEL_DEFAULT),
         retriever = retriever,
         return_source_documents=True,
         chain_type_kwargs={"prompt": QA_CHAIN_PROMPT}
