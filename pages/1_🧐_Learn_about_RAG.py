@@ -9,8 +9,6 @@ st.write("# Retrieval Augmented Generation (RAG) 🧐")
 
 st.image('./img/rag.png', caption='Overview of Steps in RAG')
 
-st.sidebar.success("Select a page above.")
-
 st.markdown(
     """
     RAG is the process of retrieving relevant contextual information from a 

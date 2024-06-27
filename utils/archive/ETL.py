@@ -15,11 +15,9 @@ embeddings_model = config.EMBEDDINGS_MODEL
 
 # Load
 file_paths = ["./data/DRAFT 1_Maternity Leave Information.docx",
-            #   "./data/local transport policy FAQ.pdf"
               ]
 
 collection_names = ['maternity', 
-            #   'transport'
               ]
 
 def count_tokens(text):

@@ -1,30 +1,13 @@
 from langchain.chains import RetrievalQA
 from langchain_openai import ChatOpenAI
 from langchain.prompts import PromptTemplate
-from langchain_community.vectorstores import Chroma
 from langchain_openai import OpenAIEmbeddings
+from langchain_community.vectorstores import Chroma
 
-persist_directory = "../chroma_db"
-model_default = "gpt-4o"
-embeddings_model = OpenAIEmbeddings(model='text-embedding-3-small')
 
-loaded_vectorstore = Chroma(persist_directory=persist_directory,
-                            embedding_function=embeddings_model,
-                            collection_name="maternity"
-                            )
-
-retriever = loaded_vectorstore.as_retriever()
 
 def similarity_search(query):
     
-    persist_directory = "../chroma_db"
-    model_default = "gpt-4o"
-    embeddings_model = OpenAIEmbeddings(model='text-embedding-3-small')
-
-    loaded_vectorstore = Chroma(persist_directory=persist_directory,
-                                embedding_function=embeddings_model,
-                                )
-
     retriever = loaded_vectorstore.as_retriever()
     response = retriever.invoke(query)
 
