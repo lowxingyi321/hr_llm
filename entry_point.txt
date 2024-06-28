@@ -1,0 +1,66 @@
+Running streamlit run home.py
+Entry point: home.py
+Current Working Directory: /app
+
+Within home.py
+"""
+from utils import rag_llm
+Look in /app for utils package and rag_llm module
+"""
+    Within rag_llm module
+    """
+    import config
+    Look in /app for config
+    """
+
+Running python rag_llm.py
+Entry point: /app/utils.py
+Current Working Directory: /app/utils
+
+
+   Within rag_llm module
+    """
+    import config
+    Look in /app/utils for config
+    """
+
+Is there a way to structure the project so that the module rag_lmm can be properly run
+no matter what the entry point is?
+
+https://discuss.streamlit.io/t/question-about-project-structure/28867/2
+Check out example docker as well
+
+
+https://github.com/chroma-core/chroma/issues/642
+https://hub.docker.com/_/python
+
+Missing C++ compilers that were needed to build hsnwlib library written in C++ called by python
+Fix: Don't use slim
+
+CMD triggers at start time
+RUN triggers at build
+
+Can either include run command to build the image
+Or put the create collection inide the run command
+
+Dockerfile - Blueprint tells you how to build the image
+Image - Static bytes that is the build
+Container - it starts running processes
+
+A Docker image is a lightweight, standalone, and executable software package that includes everything needed to run a piece of software: code, runtime, libraries, environment variables, and configuration files.
+
+A Docker container is a runnable instance of a Docker image. It encapsulates the application and its dependencies in a lightweight, portable, and self-sufficient package. Containers run in isolated environments on a shared operating system kernel, which makes them more efficient than traditional virtual machines.
+
+
+Run the Image > becomes a container that becomes a running process
+
+wsl2 - to develop in Linux
+
+To deal with a bloated global Python
+- JUst re-install, but venv are always isolated so it should be fine
+
+Run Local
+- Check venv activated
+- CHeck Python version
+- CHeck requirements
+- Build!
