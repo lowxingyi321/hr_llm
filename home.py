@@ -1,4 +1,5 @@
 import streamlit as st
+from utility import check_password
 from utils import rag_llm
 
 # region <--------- Streamlit App Configuration --------->
@@ -11,7 +12,9 @@ st.set_page_config(
 # Name 🤖_HR_Policy_Bot
 
 # endregion <--------- Streamlit App Configuration --------->
-
+if not check_password():  
+    st.stop()
+    
 st.title("HR Policy Bot")
 
 # Ensure session state variables are initialized

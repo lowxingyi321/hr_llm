@@ -5,8 +5,10 @@ from langchain.prompts import PromptTemplate
 from langchain_openai import OpenAIEmbeddings
 from langchain_community.vectorstores import Chroma
 
+embeddings_model = OpenAIEmbeddings(model=EMBEDDINGS_MODEL)
+
 all_policies_collection = Chroma(persist_directory=PERSIST_DIRECTORY,
-                                embedding_function=EMBEDDINGS_MODEL,
+                                embedding_function=embeddings_model,
                                 collection_name="all_policies"
                                 )
 

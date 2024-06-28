@@ -7,12 +7,16 @@ from utils.split import (
     recursive_split,
     viz_subword_token
 )
+from utility import check_password
 
 ### Config
 st.set_page_config(page_title="Bot Reading", page_icon="📖")
 
 st.markdown("# Learn how I read")
 ###
+
+if not check_password():  
+    st.stop()
 
 uploaded_file = st.file_uploader("Choose a file", accept_multiple_files=False)
 
@@ -38,9 +42,10 @@ if uploaded_file is not None:
     
     st.markdown(f"### Has {word_count} words and {subword_count} subword tokens.")
                 
-    st.markdown(f"## This is further split into {len(splitted_documents)} smaller documents with  the below number of tokens in each document.")
+    st.markdown(f"### This is further split into {len(splitted_documents)} smaller documents:")
 
     splitted_documents_chart = viz_subword_token(splitted_documents)
 
     st.bar_chart(splitted_documents_chart)
-                
+    
+    st.markdown(f"### With this chart showing the number of tokens in each document.")
