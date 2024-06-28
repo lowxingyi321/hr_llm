@@ -47,5 +47,10 @@ if not os.path.isdir(PERSIST_DIRECTORY):
     full_collection = create_vectorstore(full_split_documents, full_collection_name)
     print(f'{full_collection_name} vectorstore created')
 
-print('ETL completed')
+def load_policies():
+
+    success = 'Policies Loaded'
+    print(success)
+    return success
+
 

@@ -15,6 +15,20 @@ all_policies_collection = Chroma(persist_directory=PERSIST_DIRECTORY,
 retriever = all_policies_collection.as_retriever(search_type="mmr", 
                                                 search_kwargs={"k": 2, "fetch_k":3})
 
+def query_store(query):
+
+    all_policies_collection = Chroma(persist_directory=PERSIST_DIRECTORY,
+                                embedding_function=embeddings_model,
+                                collection_name="all_policies"
+                                )
+
+    retriever = all_policies_collection.as_retriever(search_type="mmr", 
+                                                    search_kwargs={"k": 2, "fetch_k":3})
+
+    response = retriever.invoke(query)
+    
+    return response
+
 def respond(query):
 
     # Build custom prompt
