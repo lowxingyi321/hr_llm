@@ -51,7 +51,6 @@ A Docker image is a lightweight, standalone, and executable software package tha
 
 A Docker container is a runnable instance of a Docker image. It encapsulates the application and its dependencies in a lightweight, portable, and self-sufficient package. Containers run in isolated environments on a shared operating system kernel, which makes them more efficient than traditional virtual machines.
 
-
 Run the Image > becomes a container that becomes a running process
 
 wsl2 - to develop in Linux
